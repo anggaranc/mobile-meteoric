@@ -1,0 +1,234 @@
+<template name="layout">
+
+  <div class="ui very thin vertical inverted labeled icon sidebar menu side-menu">
+    <a href="{{ pathFor 'trending' }}" class="item bar-close">
+      <i class="signal icon"></i> Trending
+    </a>
+    <a  href="{{ pathFor 'fresh' }}" class="item bar-close">
+      <i class="fire icon"></i> Fresh
+    </a>
+    <a href="{{ pathFor 'view' }}" class="item bar-close">
+      <i class="unhide icon"></i> NSFW
+    </a>
+    <a class="item">
+      <div class="ui button inverted black button-upload bar-close">
+        Upload
+      </div>
+    </a>
+    {{#if currentUser}}
+      <a href="#" class="item resp bar-close" id="logout">
+        <i><img src="{{picture}}" class="ui avatar image"/></i> Logout
+      </a>
+    {{else}}
+      <a class="item bar-close">
+        <div class="ui white inverted button button-login">Daftar / Masuk</div>
+      </a>
+    {{/if}}
+  </div>
+  <!-- <div class="ui fixed menu" id="menu-sub">
+    <div class=" item"  style="margin-top:40px;">
+      Our Company
+    </div>
+  </div> -->
+  <div class="ui fixed blue inverted large menu" id="data-height">
+    <div class="content-rage">
+      <div class="left menu resp">
+        <div class="title item">
+          <b>OPO Kui</b>
+        </div>
+      </div>
+      <div class="left menu resp">
+        <a href="{{ pathFor 'trending' }}" class="item resp">
+          <i  class="signal icon"></i> Trending
+        </a>
+        <a href="{{ pathFor 'fresh' }}" class="item resp">
+          <i class="fire icon"></i> Fresh
+        </a>
+        <a href="{{ pathFor 'view' }}" class="item resp">
+          <i class="unhide icon"></i> NSFW
+        </a>
+      </div>
+      <div class="right menu resp">
+        <div class="item">
+          <div class="ui button inverted black button-upload">
+            Upload
+          </div>
+        </div>
+        <div class="item">
+          <div class="ui icon red fluid small input">
+            <input type="text" placeholder="Search...">
+            <i class="search link icon"></i>
+          </div>
+        </div>
+        {{#if currentUser}}
+          <a href="#" class="item resp" id="logout">
+            <i><img src="{{picture}}" style="width: 25px; height: 25px; margin-top: -5px; margin-left: -5px; position: absolute"/></i>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{currentUser.profile.name}}
+          </a>
+          <div class="item">
+            &nbsp;
+          </div>
+        {{else}}
+          <div class="item">
+            <div class="ui white inverted button button-login">Daftar / Masuk</div>
+          </div>
+          <div class="item">
+            &nbsp;
+          </div>
+        {{/if}}
+
+      </div>
+      <div class="menu bar">
+        <a class="item nav-bar">
+          <i class="content icon"></i>OPO Kui
+        </a>
+      </div>
+      <div class="right menu bar">
+        <div class="item">
+          <div class="ui icon fluid mini input">
+            <input type="text" placeholder="Search...">
+            <i class="search link icon"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pusher" id="yuhu">
+    <div class="scroll-top-wrapper">
+      <span class="scroll-top-inner">
+        <i class="arrow circle outline up icon"></i>
+      </span>
+    </div>
+
+    {{> yield}}
+    {{> upload}}
+    {{> login}}
+  </div>
+
+</template>
+
+<template name="upload">
+  <div class="ui modal small upload-modal">
+    <i class="close icon"></i>
+    <div class="header">
+      Post for Fun
+    </div>
+    <div class="content">
+      <div class="ui info message">
+        <div class="header">Info titik titik</div>
+        <ul class="list">
+          <li>Please enter your first name</li>
+          <li>Please enter your last name</li>
+        </ul>
+      </div>
+      <form class="ui form">
+        <div class="inline fields">
+          <label for="fruit">Pilihan gambar :</label>
+          <div class="field">
+            <div class="ui radio checkbox" id="radioLocal">
+              <input type="radio" name="fruit" checked="">
+              <label>Choose Image</label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui radio checkbox" id="radioUrl">
+              <input type="radio" name="fruit">
+              <label>From URL</label>
+            </div>
+          </div>
+        </div>
+
+        <img id="picture" width='250px' alt="..." class="img-thumbnail" style="display: none">
+
+        <div class="field mini ui segment" id="fromLocal">
+          <input type="file" placeholder="http://..." id="fileLocal">
+        </div>
+        <div class="field" id="fromUrl" style='display: none'>
+          <input type="text" placeholder="http://..." id="fileUrl">
+        </div>
+        <div class="field">
+          <label>Judul <div style="float:right">75</div></label>
+          <textarea id="post-title"></textarea>
+        </div>
+        <div class="field">
+          <div class="ui checkbox">
+            <input type="checkbox" name="hot-deals">
+            <label>Sertakan sumber (hak cipta).</label>
+          </div>
+        </div>
+        <div class="field">
+          <input id="post-source" type="text" placeholder="http://...">
+        </div>
+        <div class="ui hidden divider"></div>
+        <div class="field">
+          <div class="ui checkbox">
+            <input type="checkbox" name="hot-deals">
+            <label>Setuju <a href="#">Peraturane ga?</a></label>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="actions">
+      <div class="ui black button" id="postSubmit">
+        Post
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="login">
+  <div class="ui modal small login-modal">
+    <i class="close icon"></i>
+    <div class="header">
+      Login
+    </div>
+    <div class="content">
+      <div class="ui info message">
+        <div class="header">Info titik titik</div>
+        <ul class="list">
+          <li>Please enter your first name</li>
+          <li>Please enter your last name</li>
+        </ul>
+      </div>
+
+      <div class="ui header">
+        Masuk dengan user jejaring sosial :
+      </div>
+      <div class="3 fluid ui text menu sub-bar">
+        <div class="ui facebook tiny button" id="facebook-login">
+          <i class="facebook icon"></i>
+          Facebook
+        </div>
+        <div class="ui twitter tiny button" id="twitter-login">
+          <i class="twitter icon"></i>
+          Twitter
+        </div>
+        <div class="ui google plus tiny button" id="google-login">
+          <i class="google plus icon"></i>
+          Google Plus
+        </div>
+      </div>
+      <div class="ui header">
+        Masuk dengan email :
+      </div>
+      <div class="ui form segment">
+        <div class="field">
+          <label>Email</label>
+          <div class="ui left icon input">
+            <input type="text" placeholder="Email">
+            <i class="user icon"></i>
+          </div>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <div class="ui left icon input">
+            <input type="password" placeholder="Password">
+            <i class="lock icon"></i>
+          </div>
+        </div>
+        <div class="ui blue submit button">Login</div> Belum punya account? klik <a hrer="#">Daftar</a>
+      </div>
+    </div>
+  </div>
+</template>
