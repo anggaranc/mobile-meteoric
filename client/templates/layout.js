@@ -6,11 +6,19 @@ Template.layout.rendered = function(){
     $('.side-menu')
     // .sidebar('toggle')
     .sidebar('show');
+      $('.pusher').css({
+      'overflow': 'hidden',
+      'height': '100%'
+  });
   });
 
   $('.bar-close').click(function(e){
     $('.side-menu')
     .sidebar('hide');
+    $('.pusher').css({
+    'overflow': 'auto',
+    'height': 'auto'
+});
   });
 
   // $("body").on("swiperight",function(){
