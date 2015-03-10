@@ -1,5 +1,4 @@
 <template name="layout">
-
   <div class="ui very thin vertical inverted labeled icon sidebar menu side-menu">
     <a href="{{ pathFor 'trending' }}" class="item bar-close">
       <i class="signal icon"></i> Trending
@@ -25,11 +24,7 @@
       </a>
     {{/if}}
   </div>
-  <!-- <div class="ui fixed menu" id="menu-sub">
-    <div class=" item"  style="margin-top:40px;">
-      Our Company
-    </div>
-  </div> -->
+
   <div class="ui fixed blue inverted large menu" id="data-height">
     <div class="content-rage">
       <div class="left menu resp">
@@ -105,7 +100,6 @@
     {{> upload}}
     {{> login}}
   </div>
-
 </template>
 
 <template name="upload">
@@ -167,9 +161,12 @@
             <label>Setuju <a href="#">Peraturane ga?</a></label>
           </div>
         </div>
+        <div class='field'>
+          
+        </div>
       </form>
     </div>
-    <div class="actions">
+    <div class="modal-post">
       <div class="ui black button" id="postSubmit">
         Post
       </div>

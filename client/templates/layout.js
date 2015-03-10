@@ -171,8 +171,22 @@ Template.upload.rendered = function(){
           };
 
           Posts.insert(post);
+          // console.log(succes.uploadProgress());
+          //
+          // setTimeout(function(){
+          //   console.log(succes.isUploaded());
+          //   console.log(succes.uploadProgress());
+          // }, 5000);
+
+          $('.upload-modal').modal('hide');
 				}
 			});
 		}
   });
 }
+
+Template.upload.helpers({
+  imageUpload: function () {
+    return Images.find(); // Where Images is an FS.Collection instance
+  },
+});

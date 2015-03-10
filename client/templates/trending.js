@@ -37,6 +37,9 @@ Template.testpost.helpers({
   postImage: function () {
     return Images.findOne(this.imageId);; // Where Images is an FS.Collection instance
   },
+  testImage: function () {
+    return Images.find();; // Where Images is an FS.Collection instance
+  },
 });
 
 function scrollToTop() {

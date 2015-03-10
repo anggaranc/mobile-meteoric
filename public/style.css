@@ -1,3 +1,10 @@
+.modal-post{
+  background: #efefef;
+  padding: 1rem 2rem;
+  border-top: 1px solid rgba(39, 41, 43, 0.15);
+  text-align: right;
+}
+
 .ui.sticky {
   z-index: 0;
 }
