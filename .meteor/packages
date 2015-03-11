@@ -16,3 +16,4 @@ cfs:filesystem
 cfs:standard-packages
 service-configuration
 zimme:iron-router-active
+cfs:ui

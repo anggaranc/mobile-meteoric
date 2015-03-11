@@ -118,6 +118,9 @@ Template.login.rendered = function(){
 }
 
 Template.upload.rendered = function(){
+  Session.set('imagePostId', '');
+  Session.set('uploadPercent', 0);
+
   $('#radioLocal').on('click',function(e){
       $("#fromLocal").show();
       $("#fromUrl").hide();
@@ -153,10 +156,10 @@ Template.upload.rendered = function(){
   });
 
   $('#postSubmit').on('click',function(e){
-    var file = $('#fileLocal').get(0).files[0],
-			metadataText = "this is some cool metadata text on the image";
-			fsFile = new FS.File(file);
-			fsFile.metadata = {textFile:metadataText}
+    var file = $('#fileLocal').get(0).files[0];
+		var	metadataText = "this is some cool metadata text on the image";
+		var	fsFile = new FS.File(file);
+		fsFile.metadata = {textFile:metadataText};
 
 		if(file === undefined){
 			alert("SORRY YOU NEED TO UPLOAD AN IMAGE TO CONTINUE");
@@ -181,9 +184,44 @@ Template.upload.rendered = function(){
             view: 0
           };
 
-          Posts.insert(post);
+          Session.set('imagePostId', imageId);
+
+          var checkUpload = window.setInterval(function(){
+            console.log(succes.uploadProgress());
+            Session.set('uploadPercent', succes.uploadProgress());
+
+            if(succes.uploadProgress() == 100){
+              clearInterval(checkUpload);
+              Posts.insert(post);
+
+              $('#radioLocal').click();
+              $('#fileLocal').val('');
+              $('#fileUrl').val('');
+              $('#post-title').val('');
+              $('#post-source').val('');
+              $('#picture').hide();
+              $("#agree").parent().removeClass("checked");
+              document.getElementById("agree").checked = true;
+              $("#checkboxSource").parent().removeClass("checked");
+              document.getElementById("checkboxSource").checked = true;
+
+              $('.upload-modal').modal('hide');
+            }
+          }, 1000);
 				}
 			});
 		}
   });
 }
+
+Template.upload.helpers({
+  imageUpload: function () {
+    return Images.find(); // Where Images is an FS.Collection instance
+  },
+  imagePostId: function () {
+    return Session.get('imagePostId');
+  },
+  uploadPercent: function () {
+    return Session.get('uploadPercent');
+  },
+});
