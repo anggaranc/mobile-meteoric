@@ -1,8 +1,7 @@
 Template.trending.rendered = function(){
   $('.data-left').sticky({
-    offset       : 50,
-    // bottomOffset : 50,
-    context: '#data'
+    offset  : 50,
+    context : '#data'
   });
 
   // $('.data-center').sticky({

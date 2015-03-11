@@ -5,20 +5,23 @@ Template.layout.rendered = function(){
   $('.nav-bar').click(function(){
     $('.side-menu')
     // .sidebar('toggle')
+    .sidebar('setting', 'transition', 'overlay')
     .sidebar('show');
-      $('.pusher').css({
-      'overflow': 'hidden',
-      'height': '100%'
-  });
+
+  //     $('.pusher').css({
+  //     'overflow': 'hidden',
+  //     'height': '100%'
+  // });
   });
 
   $('.bar-close').click(function(e){
     $('.side-menu')
     .sidebar('hide');
-    $('.pusher').css({
-    'overflow': 'auto',
-    'height': 'auto'
-});
+
+//     $('.pusher').css({
+//     'overflow': 'auto',
+//     'height': 'auto'
+// });
   });
 
   // $("body").on("swiperight",function(){

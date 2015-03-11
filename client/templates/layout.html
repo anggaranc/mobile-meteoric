@@ -38,13 +38,13 @@
         </div>
       </div>
       <div class="left menu resp">
-        <a href="{{ pathFor 'trending' }}" class="item resp">
+        <a href="{{ pathFor 'trending' }}" class="item resp {{isActiveRoute regex='trending'}}">
           <i  class="signal icon"></i> Trending
         </a>
-        <a href="{{ pathFor 'fresh' }}" class="item resp">
+        <a href="{{ pathFor 'fresh' }}" class="item resp {{isActiveRoute regex='fresh'}}">
           <i class="fire icon"></i> Fresh
         </a>
-        <a href="{{ pathFor 'view' }}" class="item resp">
+        <a href="{{ pathFor 'view' }}" class="item resp {{isActiveRoute regex='view'}}">
           <i class="unhide icon"></i> NSFW
         </a>
       </div>
