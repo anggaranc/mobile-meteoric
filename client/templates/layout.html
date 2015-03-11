@@ -147,7 +147,7 @@
         </div>
         <div class="field">
           <div class="ui checkbox">
-            <input type="checkbox" name="hot-deals">
+            <input type="checkbox" name="hot-deals" id="checkboxSource">
             <label>Sertakan sumber (hak cipta).</label>
           </div>
         </div>
@@ -157,12 +157,17 @@
         <div class="ui hidden divider"></div>
         <div class="field">
           <div class="ui checkbox">
-            <input type="checkbox" name="hot-deals">
+            <input type="checkbox" name="hot-deals" id="agree">
             <label>Setuju <a href="#">Peraturane ga?</a></label>
           </div>
         </div>
         <div class='field'>
-          
+          {{#with FS.GetFile "images" imagePostId}}
+            {{#unless this.isUploaded}}
+              <i>Uploading {{uploadPercent}}%</i>
+              {{> FS.UploadProgressBar semantic=true}}
+            {{/unless}}
+          {{/with}}
         </div>
       </form>
     </div>
