@@ -67,8 +67,18 @@ Template.layout.events({
         }
     })
   },
+
   'click .bar-close': function () {
 
+  },
+
+  'keyup #searchInput' :function (e){
+    if(e.keyCode == 13)
+    {
+      var keyword = $('#searchInput').val();
+
+      Router.go('fresh', {keyword: keyword});
+    }
   }
 });
 
@@ -190,6 +200,7 @@ Template.upload.rendered = function(){
           };
 
           Session.set('imagePostId', imageId);
+          $("#postSubmit").addClass("disabled");
 
           var checkUpload = window.setInterval(function(){
             console.log(succes.uploadProgress());
@@ -199,16 +210,15 @@ Template.upload.rendered = function(){
               clearInterval(checkUpload);
               Posts.insert(post);
 
+              $("#postSubmit").removeClass("disabled");
               $('#radioLocal').click();
               $('#fileLocal').val('');
               $('#fileUrl').val('');
               $('#post-title').val('');
               $('#post-source').val('');
               $('#picture').hide();
-              $("#agree").parent().removeClass("checked");
-              document.getElementById("agree").checked = true;
-              $("#checkboxSource").parent().removeClass("checked");
-              document.getElementById("checkboxSource").checked = true;
+              $('#agree').prop('checked', false);
+              $('#checkboxSource').prop('checked', false);
 
               $('.upload-modal').modal('hide');
             }
