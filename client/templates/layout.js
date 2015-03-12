@@ -68,7 +68,7 @@ Template.layout.events({
     })
   },
   'click .bar-close': function () {
-    closeSlider('my-menu', true);
+
   }
 });
 
