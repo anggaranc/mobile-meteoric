@@ -255,6 +255,22 @@
                 <i class="unhide icon"></i> NSFW
               </a>
             </li>
+            <li>
+              <a href="#" class="item button-upload bar-close">
+                  Upload
+              </a>
+            </li>
+            <li>
+              {{#if currentUser}}
+                <a href="#" class="item resp bar-close" id="logout">
+                  <i><img src="{{picture}}" class="ui avatar image"/></i> Logout
+                </a>
+              {{else}}
+                <a href="#" class="item bar-close button-login">
+                  Daftar / Masuk
+                </a>
+              {{/if}}
+            </li>
         </ul>
     </nav>
 </template>

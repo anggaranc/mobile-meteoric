@@ -234,7 +234,7 @@ Template.upload.helpers({
 
 openSlider = function (id, fullscreen) {
     var slider = $('#' + id);
-    var fs = 'mm-white';
+    var fs = 'mm-light';
 
     slider.mmenu({
         'onClick': {
@@ -245,7 +245,7 @@ openSlider = function (id, fullscreen) {
         },
         'offCanvas': {
             'position': 'left',
-            'zposition': 'front'
+            // 'zposition': 'front'
         },
         'classes': fs.toString()
     }, {
