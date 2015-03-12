@@ -1,5 +1,7 @@
 <template name="layout">
-  <div class="ui very thin vertical inverted labeled icon sidebar menu side-menu">
+  {{> menuleft}}
+
+  <!-- <div class="ui very thin vertical inverted labeled icon sidebar menu side-menu">
     <a href="{{ pathFor 'trending' }}" class="item bar-close">
       <i class="signal icon"></i> Trending
     </a>
@@ -23,7 +25,7 @@
         <div class="ui white inverted button button-login">Daftar / Masuk</div>
       </a>
     {{/if}}
-  </div>
+  </div> -->
 
   <div class="ui fixed blue inverted large menu" id="data-height">
     <div class="content-rage">
@@ -233,4 +235,26 @@
       </div>
     </div>
   </div>
+</template>
+
+<template name="menuleft">
+    <nav id="my-menu">
+        <ul>
+            <li>
+              <a href="{{ pathFor 'trending' }}" class="item bar-close">
+                <i class="signal icon"></i> Trending
+              </a>
+            </li>
+            <li>
+              <a  href="{{ pathFor 'fresh' }}" class="item bar-close">
+                <i class="fire icon"></i> Fresh
+              </a>
+            </li>
+            <li>
+              <a href="{{ pathFor 'view' }}" class="item bar-close">
+                <i class="unhide icon"></i> NSFW
+              </a>
+            </li>
+        </ul>
+    </nav>
 </template>

@@ -17,3 +17,5 @@ cfs:standard-packages
 service-configuration
 zimme:iron-router-active
 cfs:ui
+fastclick
+joshdellay:jquery-mobile-menu

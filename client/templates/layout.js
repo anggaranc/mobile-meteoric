@@ -3,26 +3,28 @@ Template.layout.rendered = function(){
   $('.ui.checkbox').checkbox();
 
   $('.nav-bar').click(function(){
-    $('.side-menu')
-    // .sidebar('toggle')
-    .sidebar('setting', 'transition', 'overlay')
-    .sidebar('show');
-
-  //     $('.pusher').css({
-  //     'overflow': 'hidden',
-  //     'height': '100%'
+    openSlider('my-menu', false);
+  });
+  // $('.nav-bar').click(function(){
+  //   $('.side-menu')
+  //   // .sidebar('toggle')
+  //   .sidebar('show');
+  //
+  // //     $('.pusher').css({
+  // //     'overflow': 'hidden',
+  // //     'height': '100%'
+  // // });
   // });
-  });
 
-  $('.bar-close').click(function(e){
-    $('.side-menu')
-    .sidebar('hide');
-
-//     $('.pusher').css({
-//     'overflow': 'auto',
-//     'height': 'auto'
-// });
-  });
+//   $('.bar-close').click(function(e){
+//     $('.side-menu')
+//     .sidebar('hide');
+//
+// //     $('.pusher').css({
+// //     'overflow': 'auto',
+// //     'height': 'auto'
+// // });
+//   });
 
   // $("body").on("swiperight",function(){
   //   console.log("ok");
@@ -64,6 +66,9 @@ Template.layout.events({
             throw new Meteor.Error("Logout failed");
         }
     })
+  },
+  'click .bar-close': function () {
+    closeSlider('my-menu', true);
   }
 });
 
@@ -225,3 +230,31 @@ Template.upload.helpers({
     return Session.get('uploadPercent');
   },
 });
+
+
+openSlider = function (id, fullscreen) {
+    var slider = $('#' + id);
+    var fs = 'mm-white';
+
+    slider.mmenu({
+        'onClick': {
+            'blockUI': false,
+            'close': true,
+            'preventDefault': false,
+            'setSelected': true
+        },
+        'offCanvas': {
+            'position': 'left',
+            'zposition': 'front'
+        },
+        'classes': fs.toString()
+    }, {
+        'transitionDuration': 100
+    });
+    slider.trigger('open.mm');
+};
+
+// closeSlider = function (id, callback) {
+//     var slider = $('#' + id);
+//     slider.trigger('close.mm');
+// };
