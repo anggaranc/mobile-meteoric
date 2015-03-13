@@ -42,7 +42,9 @@ Template.layout.rendered = function(){
   setTimeout(function(){
     // $('.data-center').sticky('refresh');
     $('.data-left').sticky('refresh');
-  }, 500);
+
+    $('.datarun').Stickyfill();
+  }, 750);
 }
 
 Template.layout.events({
@@ -244,7 +246,7 @@ Template.upload.helpers({
 
 openSlider = function (id, fullscreen) {
     var slider = $('#' + id);
-    var fs = 'mm-light';
+    var fs = 'mm-light mm-slide';
 
     slider.mmenu({
         'onClick': {
@@ -258,7 +260,8 @@ openSlider = function (id, fullscreen) {
             // 'zposition': 'front'
         },
         'classes': fs.toString()
-    }, {
+        },
+      {
         'transitionDuration': 100
     });
     slider.trigger('open.mm');

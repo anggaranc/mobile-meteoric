@@ -26,6 +26,10 @@ Template.trending.rendered = function(){
 
 };
 
+Template.testpost.rendered = function(){
+  $('.datarun').Stickyfill();
+};
+
 Template.testpost.helpers({
   images: function () {
     return Images.find(); // Where Images is an FS.Collection instance
