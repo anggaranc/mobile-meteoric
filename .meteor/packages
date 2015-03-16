@@ -6,8 +6,6 @@
 
 meteor-platform
 insecure
-iron:router
-semantic:ui-css
 multiply:iron-router-progress
 accounts-facebook
 accounts-twitter
@@ -17,5 +15,7 @@ cfs:standard-packages
 service-configuration
 zimme:iron-router-active
 cfs:ui
-fastclick
 joshdellay:jquery-mobile-menu
+mrt:external-file-loader
+semantic:ui-css
+fastclick

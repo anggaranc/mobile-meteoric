@@ -5,63 +5,48 @@ Template.layout.rendered = function(){
   $('.nav-bar').click(function(){
     openSlider('my-menu', false);
   });
-  // $('.nav-bar').click(function(){
-  //   $('.side-menu')
-  //   // .sidebar('toggle')
-  //   .sidebar('show');
-  //
-  // //     $('.pusher').css({
-  // //     'overflow': 'hidden',
-  // //     'height': '100%'
-  // // });
-  // });
 
-//   $('.bar-close').click(function(e){
-//     $('.side-menu')
-//     .sidebar('hide');
-//
-// //     $('.pusher').css({
-// //     'overflow': 'auto',
-// //     'height': 'auto'
-// // });
-//   });
-
-  // $("body").on("swiperight",function(){
-  //   console.log("ok");
-  // });
-  //
-  // $("body").on("swipeleft",function(){
-  //   console.log("ok");
-  // });
-
-  // $('body').click(function(e){
-  //   if($(e.target).prop('class') == 'nav-bar' || $(e.target).hasClass('side-menu')) return false;
-  //     $('.side-menu').sidebar('toggle');
-  // });
-
-  setTimeout(function(){
-    // $('.data-center').sticky('refresh');
-    $('.data-left').sticky('refresh');
-
-    $('.datarun').Stickyfill();
-  }, 750);
-}
-
-Template.layout.events({
-  'click .button-upload' :function (){
+  $('.button-upload').click(function(){
     $('.upload-modal')
     .modal('setting', 'closable', false)
     .modal('show')
     ;
-  },
+  });
 
-  'click .button-login' :function (){
+  $('.button-login').click(function(){
     $('.login-modal')
     .modal('setting', 'closable', false)
     .modal('show')
     ;
-  },
+  });
 
+  var fs = 'mm-light mm-slide';
+
+  // $("#my-menu").mmenu({
+  //   classes: "mm-white",
+  //     header: true,
+  //     counters: true,
+  //     offCanvas: {
+  //           position  : "left",
+  //           zposition : "front"
+  //        },
+  //     onClick: {
+  //         blockUI: false,
+  //         close: true,
+  //         preventDefault: false,
+  //         setSelected: true
+  //     }
+  //   },{
+  //       transitionDuration: 100  // does not seem to work
+  //   });
+
+  setTimeout(function(){
+    $('.data-left').sticky('refresh');
+
+  }, 750);
+}
+
+Template.layout.events({
   'click #logout' :function (){
     Meteor.logout(function(err){
         if (err) {
@@ -70,15 +55,10 @@ Template.layout.events({
     })
   },
 
-  'click .bar-close': function () {
-
-  },
-
   'keyup #searchInput' :function (e){
     if(e.keyCode == 13)
     {
       var keyword = $('#searchInput').val();
-
       Router.go('search', {keyword: keyword});
     }
   }
@@ -249,6 +229,12 @@ openSlider = function (id, fullscreen) {
     var fs = 'mm-light mm-slide';
 
     slider.mmenu({
+        'header': true,
+        'classNames': {
+          fixedElements: {
+             fixedTop: "header",
+          }
+        },
         'onClick': {
             'blockUI': false,
             'close': true,

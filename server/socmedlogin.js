@@ -1,5 +1,5 @@
 isProdEnv = function () {
-      if (process.env.ROOT_URL == "http://localhost:3000") {
+      if (process.env.ROOT_URL == "http://skala.meteor.com") {
           return false;
       } else {
           return true;
