@@ -79,7 +79,7 @@ Template.layout.events({
     {
       var keyword = $('#searchInput').val();
 
-      Router.go('fresh', {keyword: keyword});
+      Router.go('search', {keyword: keyword});
     }
   }
 });

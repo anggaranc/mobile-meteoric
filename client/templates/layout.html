@@ -1,41 +1,32 @@
 <template name="layout">
-  <nav id="my-menu">
-      <ul>
-          <li>
-            <a href="{{ pathFor 'trending' }}" class="item bar-close">
-              <i class="signal icon"></i> Trending
-            </a>
-          </li>
-          <li>
-            <a  href="{{ pathFor 'fresh' }}" class="item bar-close">
-              <i class="fire icon"></i> Fresh
-            </a>
-          </li>
-          <li>
-            <a href="{{ pathFor 'view' }}" class="item bar-close">
-              <i class="unhide icon"></i> NSFW
-            </a>
-          </li>
-          <li>
-            <a href="#" class="item button-upload bar-close">
-                Upload
-            </a>
-          </li>
-          <li>
-            {{#if currentUser}}
-              <a href="#" class="item resp bar-close" id="logout">
-                <i><img src="{{picture}}" class="ui avatar image"/></i> Logout
-              </a>
-            {{else}}
-              <a href="#" class="item bar-close button-login">
-                Daftar / Masuk
-              </a>
-            {{/if}}
-          </li>
-      </ul>
-  </nav>
-  
-  <div id="page">
+  {{> menuleft}}
+
+  <!-- <div class="ui very thin vertical inverted labeled icon sidebar menu side-menu">
+    <a href="{{ pathFor 'trending' }}" class="item bar-close">
+      <i class="signal icon"></i> Trending
+    </a>
+    <a  href="{{ pathFor 'fresh' }}" class="item bar-close">
+      <i class="fire icon"></i> Fresh
+    </a>
+    <a href="{{ pathFor 'view' }}" class="item bar-close">
+      <i class="unhide icon"></i> NSFW
+    </a>
+    <a class="item">
+      <div class="ui button inverted black button-upload bar-close">
+        Upload
+      </div>
+    </a>
+    {{#if currentUser}}
+      <a href="#" class="item resp bar-close" id="logout">
+        <i><img src="{{picture}}" class="ui avatar image"/></i> Logout
+      </a>
+    {{else}}
+      <a class="item bar-close">
+        <div class="ui white inverted button button-login">Daftar / Masuk</div>
+      </a>
+    {{/if}}
+  </div> -->
+
   <div class="ui fixed blue inverted large menu" id="data-height">
     <div class="content-rage">
       <div class="left menu resp">
@@ -100,7 +91,7 @@
     </div>
   </div>
 
-  <div class="pusher">
+  <div class="pusher dimmed">
     <div class="scroll-top-wrapper">
       <span class="scroll-top-inner">
         <i class="arrow circle outline up icon"></i>
@@ -111,7 +102,6 @@
     {{> upload}}
     {{> login}}
   </div>
-</div>
 </template>
 
 <template name="upload">
@@ -245,4 +235,26 @@
       </div>
     </div>
   </div>
+</template>
+
+<template name="menuleft">
+    <nav id="my-menu">
+        <ul>
+            <li>
+              <a href="{{ pathFor 'trending' }}" class="item bar-close">
+                <i class="signal icon"></i> Trending
+              </a>
+            </li>
+            <li>
+              <a  href="{{ pathFor 'fresh' }}" class="item bar-close">
+                <i class="fire icon"></i> Fresh
+              </a>
+            </li>
+            <li>
+              <a href="{{ pathFor 'view' }}" class="item bar-close">
+                <i class="unhide icon"></i> NSFW
+              </a>
+            </li>
+        </ul>
+    </nav>
 </template>
