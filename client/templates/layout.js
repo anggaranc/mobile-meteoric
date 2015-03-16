@@ -7,17 +7,35 @@ Template.layout.rendered = function(){
   });
 
   $('.button-upload').click(function(){
-    $('.upload-modal')
-    .modal('setting', 'closable', false)
-    .modal('show')
-    ;
+    if(!Meteor.userId()){
+      $('.login-modal')
+      .modal('setting', 'closable', false)
+      .modal('show');
+    }
+    else{
+      $('#upload-error-div').hide();
+      $('#upload-error').html('');
+
+      $("#postSubmit").removeClass("disabled");
+      $('#radioLocal').click();
+      $('#fileLocal').val('');
+      $('#fileUrl').val('');
+      $('#post-title').val('');
+      $('#post-source').val('');
+      $('#picture').hide();
+      $('#agree').prop('checked', false);
+      $('#checkboxSource').prop('checked', false);
+
+      $('.upload-modal')
+      .modal('setting', 'closable', false)
+      .modal('show');
+    }
   });
 
   $('.button-login').click(function(){
     $('.login-modal')
     .modal('setting', 'closable', false)
-    .modal('show')
-    ;
+    .modal('show');
   });
 
   var fs = 'mm-light mm-slide';
@@ -61,6 +79,7 @@ Template.layout.events({
   'keyup #searchInput' :function (e){
     if(e.keyCode == 13)
     {
+      $('#searchInput').blur();
       var keyword = $('#searchInput').val();
       Router.go('search', {keyword: keyword});
     }
@@ -161,8 +180,19 @@ Template.upload.rendered = function(){
 		var	fsFile = new FS.File(file);
 		fsFile.metadata = {textFile:metadataText};
 
-		if(file === undefined){
-			alert("SORRY YOU NEED TO UPLOAD AN IMAGE TO CONTINUE");
+		if(file === undefined || $('#post-title').val() == ''){
+			//alert("SORRY YOU NEED TO UPLOAD AN IMAGE TO CONTINUE");
+
+      if(file === undefined){
+        $('#upload-error').append('<li>Please choose image.</li>');
+      }
+
+      if($('#post-title').val() == ''){
+        $('#upload-error').append('<li>Title cannot be blank.</li>');
+      }
+
+      $('#upload-error-div').show();
+      $('.modals').scrollTop(0);
 		} else{
 			Images.insert(fsFile,function(err,succes){
 				if(err){
