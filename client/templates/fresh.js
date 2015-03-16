@@ -1,4 +1,6 @@
 Template.fresh.rendered = function(){
+  $('#searchInput').val('');
+  
   $('.ui.sticky.data-left').sticky({
     offset  : 50,
     context : '#data'

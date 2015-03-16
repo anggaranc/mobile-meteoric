@@ -3,3 +3,7 @@ Template.search.helpers({
     return Images.findOne(this.imageId);; // Where Images is an FS.Collection instance
   }
 });
+
+Template.search.rendered = function(){
+  $('#searchInput').val('');
+};

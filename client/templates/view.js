@@ -1,4 +1,6 @@
 Template.view.rendered = function(){
+  $('#searchInput').val('');
+  
   $('.ui.sticky').sticky({
     offset       : 50,
     // bottomOffset : 50,
