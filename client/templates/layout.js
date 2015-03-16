@@ -39,10 +39,14 @@ Template.layout.rendered = function(){
   //   },{
   //       transitionDuration: 100  // does not seem to work
   //   });
+
   setInterval(function () { autoloadpage(); }, 1000);
   function autoloadpage() {
-    $('.data-left').sticky('refresh');
+    if($("#data").height() >= $("div.ui.sticky.data-left").height()){
+      $('.data-left').sticky('refresh');
+    }
   }
+
 }
 
 Template.layout.events({
