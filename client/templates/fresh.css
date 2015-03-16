@@ -1,3 +1,5 @@
-#my-menu:not( .mm-menu) {
-    display: none;
+.datarun {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 38px;
 }

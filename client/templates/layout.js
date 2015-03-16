@@ -39,11 +39,10 @@ Template.layout.rendered = function(){
   //   },{
   //       transitionDuration: 100  // does not seem to work
   //   });
-
-  setTimeout(function(){
+  setInterval(function () { autoloadpage(); }, 1000);
+  function autoloadpage() {
     $('.data-left').sticky('refresh');
-
-  }, 750);
+  }
 }
 
 Template.layout.events({
