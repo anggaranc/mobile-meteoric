@@ -1,19 +1,8 @@
 Template.trending.rendered = function(){
-  $('.data-left').sticky({
+  $('.ui.sticky.data-left').sticky({
     offset  : 50,
     context : '#data'
   });
-
-  // $('.data-center').sticky({
-  //   offset       : 38,
-  //   // context: '#databaru'
-  // });
-
-  // $(".container .itema.use_manual").stick_in_parent({
-  //   parent: ".container",
-  //   spacer: ".manual_spacer",
-  //   offset_top: 36,
-  // });
 
   $(document).on( 'scroll', function(){
     if ($(window).scrollTop() > 100) {
@@ -26,8 +15,21 @@ Template.trending.rendered = function(){
 
 };
 
-Template.testpost.rendered = function(){
+var libhtml = function() {
+};
+
+var libsticky = function() {
   $('.datarun').Stickyfill();
+  setInterval(function () { autoloadpage(); }, 3000);
+  function autoloadpage() {
+    $('.datarun').Stickyfill();
+    $('html body').css("height", "auto");
+  }
+};
+
+Template.testpost.rendered = function(){
+  Meteor.Loader.loadJs("/sticky/html5shiv.js", libhtml);
+  Meteor.Loader.loadJs("/sticky/stickyfill.js", libsticky);
 };
 
 Template.testpost.helpers({
