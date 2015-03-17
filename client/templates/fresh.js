@@ -1,10 +1,12 @@
 Template.fresh.rendered = function(){
   $('#searchInput').val('');
-  
-  $('.ui.sticky.data-left').sticky({
-    offset  : 50,
-    context : '#data'
-  });
+
+  if(($("#data").height() >= $("div.ui.sticky.data-left").height()) && ($("body").width() > 979)){
+    $('.ui.sticky.data-left').sticky({
+      offset  : 50,
+      context : '#data'
+    });
+  }
 
   $(document).on( 'scroll', function(){
     if ($(window).scrollTop() > 100) {
@@ -21,10 +23,11 @@ var libhtml = function() {
 };
 
 var libsticky = function() {
-  $('.datarun').Stickyfill();
-  setInterval(function () { autoloadpage(); }, 3000);
+  setInterval(function () { autoloadpage(); }, 1000);
   function autoloadpage() {
-    $('.datarun').Stickyfill();
+    if($("body").width() > 979){
+      $('.datarun').Stickyfill();
+    }
     $('html body').css("height", "auto");
   }
 };

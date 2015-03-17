@@ -1,10 +1,12 @@
 Template.trending.rendered = function(){
   $('#searchInput').val('');
 
-  $('.ui.sticky.data-left').sticky({
-    offset  : 50,
-    context : '#data'
-  });
+  if(($("#data").height() >= $("div.ui.sticky.data-left").height()) && ($("body").width() > 979)){
+    $('.ui.sticky.data-left').sticky({
+      offset  : 50,
+      context : '#data'
+    });
+  }
 
   $(document).on( 'scroll', function(){
     if ($(window).scrollTop() > 100) {
@@ -27,12 +29,15 @@ var libhtml = function() {
 };
 
 var libsticky = function() {
-  $('.datarun').Stickyfill();
-  setInterval(function () { autoloadpage(); }, 3000);
-  function autoloadpage() {
-    $('.datarun').Stickyfill();
-    $('html body').css("height", "auto");
-  }
+    // $('.datarun').Stickyfill();
+    setInterval(function () { autoloadpage(); }, 3000);
+    function autoloadpage() {
+      if($("body").width() > 979){
+        $('.datarun').Stickyfill();
+      }
+      $('html body').css("height", "auto");
+    }
+
 };
 
 Template.testpost.rendered = function(){
