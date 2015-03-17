@@ -76,11 +76,13 @@ Template.layout.events({
     })
   },
 
-  'keyup #searchInput' :function (e){
+  'keyup .searchInput' :function (e){
+    $('.searchInput').val(e.currentTarget.value);
+
     if(e.keyCode == 13)
     {
-      $('#searchInput').blur();
-      var keyword = $('#searchInput').val();
+      $('.searchInput').blur();
+      var keyword = $('.searchInput').val();
       Router.go('search', {keyword: keyword});
     }
   }
