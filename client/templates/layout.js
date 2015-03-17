@@ -60,9 +60,9 @@ Template.layout.rendered = function(){
 
   setInterval(function () { autoloadpage(); }, 1000);
   function autoloadpage() {
-    if($("#data").height() >= $("div.ui.sticky.data-left").height()){
+    // if($("#data").height() >= $("div.ui.sticky.data-left").height()){
       $('.data-left').sticky('refresh');
-    }
+    // }
   }
 
 }
@@ -283,7 +283,7 @@ openSlider = function (id, fullscreen) {
         'classes': fs.toString()
         },
       {
-        'transitionDuration': 100
+        'transitionDuration': 0
     });
     slider.trigger('open.mm');
 };
