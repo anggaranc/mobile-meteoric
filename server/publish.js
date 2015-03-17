@@ -1,5 +1,9 @@
-Meteor.publish('Posts', function(){
-  return Posts.find();
+// Meteor.publish('Posts', function(){
+//   return Posts.find();
+// });
+
+Meteor.publish('Posts', function(limit) {
+  return Posts.find({}, { limit: limit });
 });
 
 Posts.allow({

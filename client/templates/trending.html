@@ -56,7 +56,10 @@
       </div> -->
 
       {{> testpost}}
-      <div class="fluid ui button loat">Load more</div>
+
+      {{#if moreResults}}
+        <div class="fluid ui button loat">Loading ...</div>
+      {{/if}}
     </div>
   </div>
 </template>
