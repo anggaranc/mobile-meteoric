@@ -293,7 +293,7 @@ openSlider = function (id, fullscreen) {
 //     slider.trigger('close.mm');
 // };
 
-var ITEMS_INCREMENT = 10;
+var ITEMS_INCREMENT = 2;
 Session.setDefault('itemsLimit', ITEMS_INCREMENT);
 
 $(window).scroll(showMoreVisible);
