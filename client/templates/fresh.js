@@ -1,10 +1,12 @@
 Template.fresh.rendered = function(){
   $('#searchInput').val('');
 
-  $('.ui.sticky.data-left').sticky({
-    offset  : 50,
-    context : '#data'
-  });
+  if(($("#data").height() >= $("div.ui.sticky.data-left").height()) && ($("body").width() > 979)){
+    $('.ui.sticky.data-left').sticky({
+      offset  : 50,
+      context : '#data'
+    });
+  }
 
   $(document).on( 'scroll', function(){
     if ($(window).scrollTop() > 100) {
