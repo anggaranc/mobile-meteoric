@@ -17,6 +17,12 @@ Template.trending.rendered = function(){
 
 };
 
+Template.trending.helpers({
+  moreResults: function () {
+    return !(Posts.find().count() < Session.get("itemsLimit"));
+  }
+});
+
 var libhtml = function() {
 };
 

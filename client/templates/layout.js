@@ -290,3 +290,29 @@ openSlider = function (id, fullscreen) {
 //     var slider = $('#' + id);
 //     slider.trigger('close.mm');
 // };
+
+var ITEMS_INCREMENT = 10;
+Session.setDefault('itemsLimit', ITEMS_INCREMENT);
+
+$(window).scroll(showMoreVisible);
+
+function showMoreVisible() {
+    var threshold, target = $("#showMoreResults");
+    if (!target.length) return;
+
+    threshold = $(window).scrollTop() + $(window).height() - target.height();
+
+    if (target.offset().top < threshold) {
+        if (!target.data("visible")) {
+            // console.log("target became visible (inside viewable area)");
+            target.data("visible", true);
+            Session.set("itemsLimit",
+                Session.get("itemsLimit") + ITEMS_INCREMENT);
+        }
+    } else {
+        if (target.data("visible")) {
+            // console.log("target became invisible (below viewable arae)");
+            target.data("visible", false);
+        }
+    }
+}
