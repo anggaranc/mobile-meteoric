@@ -21,12 +21,15 @@ var libhtml = function() {
 };
 
 var libsticky = function() {
-  $('.datarun').Stickyfill();
-  setInterval(function () { autoloadpage(); }, 3000);
-  function autoloadpage() {
-    $('.datarun').Stickyfill();
-    $('html body').css("height", "auto");
-  }
+    // $('.datarun').Stickyfill();
+    setInterval(function () { autoloadpage(); }, 3000);
+    function autoloadpage() {
+      if($("body").width() > 979){
+        $('.datarun').Stickyfill();
+      }
+      $('html body').css("height", "auto");
+    }
+
 };
 
 Template.testpost.rendered = function(){
