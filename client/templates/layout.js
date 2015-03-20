@@ -76,6 +76,15 @@ Template.layout.rendered = function(){
     // }
   }
 
+  $('.searchIcon').on('click', function(){
+    $('.searchInput').val($(this).prev().val());
+
+    if($(this).prev().val() != ''){
+      $('.searchInput').blur();
+      var keyword = $('.searchInput').val();
+      Router.go('search', {keyword: keyword});
+    }
+  });
 }
 
 Template.layout.events({
@@ -90,11 +99,16 @@ Template.layout.events({
   'keyup .searchInput' :function (e){
     $('.searchInput').val(e.currentTarget.value);
 
-    if(e.keyCode == 13)
-    {
-      $('.searchInput').blur();
-      var keyword = $('.searchInput').val();
-      Router.go('search', {keyword: keyword});
+    if(e.currentTarget.value != ''){
+      var theEvent = e || window.event;
+      var keyPressed = theEvent.keyCode || theEvent.which;
+
+      if(keyPressed == 13)
+      {
+        $('.searchInput').blur();
+        var keyword = $('.searchInput').val();
+        Router.go('search', {keyword: keyword});
+      }
     }
   }
 });
