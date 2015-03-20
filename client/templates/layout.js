@@ -9,6 +9,22 @@ Template.layout.rendered = function(){
     'tolerance': 70
   });
 
+  $("html").swipe( {
+        //Generic swipe handler for all directions
+        swipeLeft:function(event, direction, distance, duration, fingerCount, fingerData) {
+          if(direction == "left"){
+            slideout.close();
+          }
+        },
+        swipeRight:function(event, direction, distance, duration, fingerCount, fingerData) {
+
+          if(direction == "right"){
+            slideout.open();
+          }
+        },
+         threshold:0
+      });
+
   $('.nav-bar').click(function(){
     slideout.toggle();
   });

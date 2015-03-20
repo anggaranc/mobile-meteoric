@@ -47,9 +47,7 @@
         {{/if}}
       </div>
       <div class="menu bar">
-        <a class="item nav-bar">
-          <i class="content icon"></i>OPO Kui
-        </a>
+        <div class="header item nav-bar">OPO Kui</div>
       </div>
       <div class="right menu bar">
         <div class="item">
@@ -61,24 +59,22 @@
       </div>
     </div>
   </div>
+
   <nav class="menu-left">
-    <div class="ui bulleted list">
-      <a class="item">Gaining Access</a>
-      <a class="item">Inviting Friends</a>
-      <div class="item">
-        <a>Benefits</a>
-        <div class="list">
-          <a class="item">Use Anywhere</a>
-          <a class="item">Rebates</a>
-          <a class="item">Discounts</a>
-        </div>
-      </div>
-      <a class="item">Warranty</a>
-     </div>
-    </nav>
+    <div class="ui selection list">
+      <a href="{{ pathFor 'trending' }}" class="item {{isActiveRoute regex='trending'}}">
+        <i  class="signal icon"></i> Trending
+      </a>
+      <a href="{{ pathFor 'fresh' }}" class="item {{isActiveRoute regex='fresh'}}">
+        <i class="fire icon"></i> Fresh
+      </a>
+      <a href="{{ pathFor 'view' }}" class="item {{isActiveRoute regex='view'}}">
+        <i class="unhide icon"></i> NSFW
+      </a>
+    </div>
+  </nav>
+
   <main class="main-content">
-
-
     <div class="pusher">
       <div class="scroll-top-wrapper">
         <span class="scroll-top-inner">
