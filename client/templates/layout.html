@@ -1,67 +1,83 @@
 <template name="layout">
-  <div id="page">
-    <div class="ui fixed blue inverted large menu FixedTop" id="data-height">
-      <div class="content-rage">
-        <div class="left menu resp">
-          <div class="title item">
-            <b>OPO Kui</b>
+  <div class="ui fixed blue inverted large menu FixedTop" id="data-height">
+    <div class="content-rage">
+      <div class="left menu resp">
+        <div class="title item">
+          <b>OPO Kui</b>
+        </div>
+      </div>
+      <div class="left menu resp">
+        <a href="{{ pathFor 'trending' }}" class="item resp {{isActiveRoute regex='trending'}}">
+          <i  class="signal icon"></i> Trending
+        </a>
+        <a href="{{ pathFor 'fresh' }}" class="item resp {{isActiveRoute regex='fresh'}}">
+          <i class="fire icon"></i> Fresh
+        </a>
+        <a href="{{ pathFor 'view' }}" class="item resp {{isActiveRoute regex='view'}}">
+          <i class="unhide icon"></i> NSFW
+        </a>
+      </div>
+      <div class="right menu resp">
+        <div class="item">
+          <div class="ui button inverted black button-upload">
+            Upload
           </div>
         </div>
-        <div class="left menu resp">
-          <a href="{{ pathFor 'trending' }}" class="item resp {{isActiveRoute regex='trending'}}">
-            <i  class="signal icon"></i> Trending
-          </a>
-          <a href="{{ pathFor 'fresh' }}" class="item resp {{isActiveRoute regex='fresh'}}">
-            <i class="fire icon"></i> Fresh
-          </a>
-          <a href="{{ pathFor 'view' }}" class="item resp {{isActiveRoute regex='view'}}">
-            <i class="unhide icon"></i> NSFW
-          </a>
+        <div class="item">
+          <div class="ui icon red fluid small input">
+            <input type="text" placeholder="Search..." id="searchInput" class='searchInput'>
+            <i class="search link icon"></i>
+          </div>
         </div>
-        <div class="right menu resp">
+        {{#if currentUser}}
+          <a href="#" class="item resp" id="logout">
+            <i><img src="{{picture}}" style="width: 25px; height: 25px; margin-top: -5px; margin-left: -5px; position: absolute"/></i>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{currentUser.profile.name}}
+          </a>
           <div class="item">
-            <div class="ui button inverted black button-upload">
-              Upload
-            </div>
+            &nbsp;
+          </div>
+        {{else}}
+          <div class="item">
+            <div class="ui white inverted button button-login">Daftar / Masuk</div>
           </div>
           <div class="item">
-            <div class="ui icon red fluid small input">
-              <input type="text" placeholder="Search..." id="searchInput" class='searchInput'>
-              <i class="search link icon"></i>
-            </div>
+            &nbsp;
           </div>
-          {{#if currentUser}}
-            <a href="#" class="item resp" id="logout">
-              <i><img src="{{picture}}" style="width: 25px; height: 25px; margin-top: -5px; margin-left: -5px; position: absolute"/></i>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{currentUser.profile.name}}
-            </a>
-            <div class="item">
-              &nbsp;
-            </div>
-          {{else}}
-            <div class="item">
-              <div class="ui white inverted button button-login">Daftar / Masuk</div>
-            </div>
-            <div class="item">
-              &nbsp;
-            </div>
-          {{/if}}
-        </div>
-        <div class="menu bar">
-          <a href="#my-menu" class="item nav-bar">
-            <i class="content icon"></i>OPO Kui
-          </a>
-        </div>
-        <div class="right menu bar">
-          <div class="item">
-            <div class="ui icon fluid mini input">
-              <input type="text" placeholder="Search..." class='searchInput'>
-              <i class="search link icon"></i>
-            </div>
+        {{/if}}
+      </div>
+      <div class="menu bar">
+        <a class="item nav-bar">
+          <i class="content icon"></i>OPO Kui
+        </a>
+      </div>
+      <div class="right menu bar">
+        <div class="item">
+          <div class="ui icon fluid mini input">
+            <input type="text" placeholder="Search..." class='searchInput'>
+            <i class="search link icon"></i>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <nav class="menu-left">
+    <div class="ui bulleted list">
+      <a class="item">Gaining Access</a>
+      <a class="item">Inviting Friends</a>
+      <div class="item">
+        <a>Benefits</a>
+        <div class="list">
+          <a class="item">Use Anywhere</a>
+          <a class="item">Rebates</a>
+          <a class="item">Discounts</a>
+        </div>
+      </div>
+      <a class="item">Warranty</a>
+     </div>
+    </nav>
+  <main class="main-content">
+
 
     <div class="pusher">
       <div class="scroll-top-wrapper">
@@ -74,8 +90,8 @@
       {{> upload}}
       {{> login}}
     </div>
-  </div>
-  <nav class="barmenu" id="my-menu">
+  </main>
+  <!-- <nav class="barmenu" id="my-menu">
       <ul>
           <li>
             <a href="{{ pathFor 'trending' }}" class="item bar-close">
@@ -109,7 +125,7 @@
             {{/if}}
           </li>
       </ul>
-  </nav>
+  </nav> -->
 </template>
 
 <template name="upload">

@@ -2,9 +2,20 @@ Template.layout.rendered = function(){
   $('.ui.dropdown').dropdown();
   $('.ui.checkbox').checkbox();
 
-  $('.nav-bar').click(function(){
-    openSlider('my-menu', false);
+  var slideout = new Slideout({
+    'panel': $('.main-content').get(0),
+    'menu': $('.menu-left').get(0),
+    'padding': 256,
+    'tolerance': 70
   });
+
+  $('.nav-bar').click(function(){
+    slideout.toggle();
+  });
+
+  // $('.nav-bar').click(function(){
+  //   openSlider('my-menu', false);
+  // });
 
   $('.button-upload').click(function(){
     if(!Meteor.userId()){
