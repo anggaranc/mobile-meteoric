@@ -13,11 +13,10 @@ accounts-google
 cfs:filesystem
 cfs:standard-packages
 service-configuration
-zimme:iron-router-active
 cfs:ui
-joshdellay:jquery-mobile-menu
-mrt:external-file-loader
+meteoric:ionic
+meteoric:ionicons-sass
+fourseven:scss
+meteoric:ionic-sass
+meteoric:autoform-ionic
 semantic:ui-css
-fastclick
-chriswessels:slideout
-hedcet:touch-swipe

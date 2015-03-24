@@ -1,278 +1,36 @@
 <template name="layout">
-  <div class="ui fixed blue inverted large menu FixedTop" id="data-height">
-    <div class="content-rage">
-      <div class="left menu resp">
-        <div class="title item">
-          <b>OPO Kui</b>
-        </div>
-      </div>
-      <div class="left menu resp">
-        <a href="{{ pathFor 'trending' }}" class="item resp {{isActiveRoute regex='trending'}}">
-          <i  class="signal icon"></i> Trending
+  {{#ionBody}}
+    {{#ionSideMenuContainer}}
+      {{#ionSideMenus enable-menu-with-back-views="false"}}
+        {{#ionSideMenu}}
+          {{> menu}}
+        {{/ionSideMenu}}
+      {{/ionSideMenus}}
+
+      {{#ionSideMenuContent}}
+        {{#ionNavView}}
+          {{> yield}}
+        {{/ionNavView}}
+      {{/ionSideMenuContent}}
+    {{/ionSideMenuContainer}}
+  {{/ionBody}}
+</template>
+
+<template name="menu">
+    {{#ionHeaderBar class="bar-dark"}}
+      <h1 class="title">Opo Kuwi</h1>
+    {{/ionHeaderBar}}
+    {{#ionContent}}
+      {{#ionList}}
+        <a class="item" href="/" data-ion-menu-close>
+          <i class="signal icon"></i> Trending
         </a>
-        <a href="{{ pathFor 'fresh' }}" class="item resp {{isActiveRoute regex='fresh'}}">
+        <a class="item" href="/fresh" data-ion-menu-close>
           <i class="fire icon"></i> Fresh
         </a>
-        <a href="{{ pathFor 'view' }}" class="item resp {{isActiveRoute regex='view'}}">
+        <a class="item" href="/view" data-ion-menu-close>
           <i class="unhide icon"></i> NSFW
         </a>
-      </div>
-      <div class="right menu resp">
-        <div class="item">
-          <div class="ui button inverted black button-upload">
-            Upload
-          </div>
-        </div>
-        <div class="item">
-          <div class="ui icon red fluid small input">
-            <input type="text" placeholder="Search..." id="searchInput" class='searchInput'>
-            <i class="search link icon searchIcon"></i>
-          </div>
-        </div>
-        {{#if currentUser}}
-          <a href="#" class="item resp" id="logout">
-            <i><img src="{{picture}}" style="width: 25px; height: 25px; margin-top: -5px; margin-left: -5px; position: absolute"/></i>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{currentUser.profile.name}}
-          </a>
-          <div class="item">
-            &nbsp;
-          </div>
-        {{else}}
-          <div class="item">
-            <div class="ui white inverted button button-login">Daftar / Masuk</div>
-          </div>
-          <div class="item">
-            &nbsp;
-          </div>
-        {{/if}}
-      </div>
-      <div class="menu bar">
-        <div class="header item nav-bar">OPO Kui</div>
-      </div>
-      <div class="right menu bar">
-        <div class="item">
-            <div class="ui icon fluid mini input">
-              <input type="text" placeholder="Search..." class='searchInput'>
-              <i class="search link icon searchIcon"></i>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <nav class="menu-left">
-    <div class="ui selection list">
-      <a href="{{ pathFor 'trending' }}" class="item {{isActiveRoute regex='trending'}}">
-        <i  class="signal icon"></i> Trending
-      </a>
-      <a href="{{ pathFor 'fresh' }}" class="item {{isActiveRoute regex='fresh'}}">
-        <i class="fire icon"></i> Fresh
-      </a>
-      <a href="{{ pathFor 'view' }}" class="item {{isActiveRoute regex='view'}}">
-        <i class="unhide icon"></i> NSFW
-      </a>
-    </div>
-  </nav>
-
-  <main class="main-content">
-    <div class="pusher">
-      <div class="scroll-top-wrapper">
-        <span class="scroll-top-inner">
-          <i class="arrow circle outline up icon"></i>
-        </span>
-      </div>
-
-      {{> yield}}
-      {{> upload}}
-      {{> login}}
-    </div>
-  </main>
-  <!-- <nav class="barmenu" id="my-menu">
-      <ul>
-          <li>
-            <a href="{{ pathFor 'trending' }}" class="item bar-close">
-              <i class="signal icon"></i> Trending
-            </a>
-          </li>
-          <li>
-            <a  href="{{ pathFor 'fresh' }}" class="item bar-close">
-              <i class="fire icon"></i> Fresh
-            </a>
-          </li>
-          <li>
-            <a href="{{ pathFor 'view' }}" class="item bar-close">
-              <i class="unhide icon"></i> NSFW
-            </a>
-          </li>
-          <li>
-            <a href="#" class="item button-upload bar-close">
-                Upload
-            </a>
-          </li>
-          <li>
-            {{#if currentUser}}
-              <a href="#" class="item resp bar-close" id="logout">
-                <i><img src="{{picture}}" class="ui avatar image"/></i> Logout
-              </a>
-            {{else}}
-              <a href="#" class="item bar-close button-login">
-                Daftar / Masuk
-              </a>
-            {{/if}}
-          </li>
-      </ul>
-  </nav> -->
-</template>
-
-<template name="upload">
-  <div class="ui modal small upload-modal">
-    <i class="close icon"></i>
-    <div class="header">
-      Post for Fun
-    </div>
-    <div class="content">
-      <div class="ui error message" id='upload-error-div' style='display: none'>
-        <div class="header">Error</div>
-        <ul class="list" id="upload-error">
-        </ul>
-      </div>
-      <form class="ui form">
-        <div class="inline fields">
-          <label for="fruit">Pilihan gambar :</label>
-          <div class="field">
-            <div class="ui radio checkbox" id="radioLocal">
-              <input type="radio" name="fruit" checked="">
-              <label>Choose Image</label>
-            </div>
-          </div>
-          <div class="field">
-            <div class="ui radio checkbox" id="radioUrl">
-              <input type="radio" name="fruit">
-              <label>From URL</label>
-            </div>
-          </div>
-        </div>
-
-        <img id="picture" width='250px' alt="..." class="img-thumbnail" style="display: none">
-
-        <div class="field mini ui segment" id="fromLocal">
-          <input type="file" placeholder="http://..." id="fileLocal">
-        </div>
-        <div class="field" id="fromUrl" style='display: none'>
-          <input type="text" placeholder="http://..." id="fileUrl">
-        </div>
-        <div class="field">
-          <label>Judul <div style="float:right">75</div></label>
-          <textarea id="post-title"></textarea>
-        </div>
-        <div class="field">
-          <div class="ui checkbox">
-            <input type="checkbox" name="hot-deals" id="checkboxSource">
-            <label>Sertakan sumber (hak cipta).</label>
-          </div>
-        </div>
-        <div class="field">
-          <input id="post-source" type="text" placeholder="http://...">
-        </div>
-        <div class="ui hidden divider"></div>
-        <div class="field">
-          <div class="ui checkbox">
-            <input type="checkbox" name="hot-deals" id="agree">
-            <label>Setuju <a href="#">Peraturane ga?</a></label>
-          </div>
-        </div>
-        <div class='field'>
-          {{#with FS.GetFile "images" imagePostId}}
-            {{#unless this.isUploaded}}
-              <i>Uploading {{uploadPercent}}%</i>
-              {{> FS.UploadProgressBar semantic=true}}
-            {{/unless}}
-          {{/with}}
-        </div>
-      </form>
-    </div>
-    <div class="modal-post">
-      <div class="ui black button" id="postSubmit">
-        Post
-      </div>
-    </div>
-  </div>
-</template>
-
-<template name="login">
-  <div class="ui modal small login-modal">
-    <i class="close icon"></i>
-    <div class="header">
-      Login
-    </div>
-    <div class="content">
-      <div class="ui info message">
-        <div class="header">Info titik titik</div>
-        <ul class="list">
-          <li>Please enter your first name</li>
-          <li>Please enter your last name</li>
-        </ul>
-      </div>
-
-      <div class="ui header">
-        Masuk dengan user jejaring sosial :
-      </div>
-      <div class="3 fluid ui text menu sub-bar">
-        <div class="ui facebook tiny button" id="facebook-login">
-          <i class="facebook icon"></i>
-          Facebook
-        </div>
-        <div class="ui twitter tiny button" id="twitter-login">
-          <i class="twitter icon"></i>
-          Twitter
-        </div>
-        <div class="ui google plus tiny button" id="google-login">
-          <i class="google plus icon"></i>
-          Google Plus
-        </div>
-      </div>
-      <div class="ui header">
-        Masuk dengan email :
-      </div>
-      <div class="ui form segment">
-        <div class="field">
-          <label>Email</label>
-          <div class="ui left icon input">
-            <input type="text" placeholder="Email">
-            <i class="user icon"></i>
-          </div>
-        </div>
-        <div class="field">
-          <label>Password</label>
-          <div class="ui left icon input">
-            <input type="password" placeholder="Password">
-            <i class="lock icon"></i>
-          </div>
-        </div>
-        <div class="ui blue submit button">Login</div> Belum punya account? klik <a hrer="#">Daftar</a>
-      </div>
-    </div>
-  </div>
-</template>
-
-<template name="menuleft">
-    <nav id="my-menu">
-        <ul>
-            <li>
-              <a href="{{ pathFor 'trending' }}" class="item bar-close">
-                <i class="signal icon"></i> Trending
-              </a>
-            </li>
-            <li>
-              <a  href="{{ pathFor 'fresh' }}" class="item bar-close">
-                <i class="fire icon"></i> Fresh
-              </a>
-            </li>
-            <li>
-              <a href="{{ pathFor 'view' }}" class="item bar-close">
-                <i class="unhide icon"></i> NSFW
-              </a>
-            </li>
-        </ul>
-    </nav>
+      {{/ionList}}
+    {{/ionContent}}
 </template>
